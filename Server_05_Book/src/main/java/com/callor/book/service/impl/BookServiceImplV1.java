@@ -12,13 +12,13 @@ import com.callor.book.service.BookService;
 import com.callor.book.service.DBContract;
 
 /*
- * DB와 연동한 Service
- * DB연결을 하고 
- * SQL을 작성하고
- * SQL Packing하고 
- * Packing된 객체를 사용하여 SQL을 실행하고
+ * DB�� �뿰�룞�븳 Service
+ * DB�뿰寃곗쓣 �븯怨� 
+ * SQL�쓣 �옉�꽦�븯怨�
+ * SQL Packing�븯怨� 
+ * Packing�맂 媛앹껜瑜� �궗�슜�븯�뿬 SQL�쓣 �떎�뻾�븯怨�
  * 
- * 조회할 경우는 수신된 데이터를 처리
+ * 議고쉶�븷 寃쎌슦�뒗 �닔�떊�맂 �뜲�씠�꽣瑜� 泥섎━
  */
 public class BookServiceImplV1 implements BookService{
 	
@@ -27,10 +27,10 @@ public class BookServiceImplV1 implements BookService{
 	public BookServiceImplV1() {
 		this.dbConn = DBContract.getDBConnection();
 	}
-
+ 
 	@Override
 	public void insert(BookVO bookVO) {
-		// TODO 도서정보 추가
+		// TODO �룄�꽌�젙蹂� 異붽�
 		
 		String sql = " INSERT INTO tbl_books ";
 		sql += "(bk_isbn, bk_title, bk_ccode, "
@@ -41,8 +41,8 @@ public class BookServiceImplV1 implements BookService{
 		
 		// sql = "(" + bookVO.getBk_isbn() + "," + bookVO.getBk_title();
 				
-		// String type의 SQL 명령문을
-		// Oracle에 전송하기 위해 Packet 으로 만들기
+		// String type�쓽 SQL 紐낅졊臾몄쓣
+		// Oracle�뿉 �쟾�넚�븯湲� �쐞�빐 Packet �쑝濡� 留뚮뱾湲�
 		PreparedStatement pStr = null;
 		
 		try {
@@ -75,9 +75,9 @@ public class BookServiceImplV1 implements BookService{
 
 	@Override
 	public BookDTO findById(String bk_isbn) {
-		// TODO 도서 검색
+		// TODO �룄�꽌 寃��깋
 		
-		String sql = " SELECT * FROM view_도서정보";
+		String sql = " SELECT * FROM view_�룄�꽌�젙蹂�";
 		sql += " WHERE ISBN = ? ";
 		
 		PreparedStatement pStr = null;
@@ -90,11 +90,11 @@ public class BookServiceImplV1 implements BookService{
 			if(result.next()) {
 				BookDTO bookDTO = new BookDTO();
 				bookDTO.setBk_isbn(result.getString("ISBN"));
-				bookDTO.setBk_title(result.getString("도서명"));
-				bookDTO.setBk_cname(result.getString("출판사명"));
-				bookDTO.setBk_author(result.getString("출판사대표"));
-				bookDTO.setBk_cceo(result.getString("저자명"));
-				bookDTO.setBk_au_tel(result.getString("저자연락처"));
+				bookDTO.setBk_title(result.getString("�룄�꽌紐�"));
+				bookDTO.setBk_cname(result.getString("異쒗뙋�궗紐�"));
+				bookDTO.setBk_author(result.getString("異쒗뙋�궗���몴"));
+				bookDTO.setBk_cceo(result.getString("���옄紐�"));
+				bookDTO.setBk_au_tel(result.getString("���옄�뿰�씫泥�"));
 				return bookDTO;
 				
 			} else {
