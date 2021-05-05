@@ -20,6 +20,7 @@ public class DBContract {
 	// static으로 선언된 dbConn 객체를 초기화하는 코드
 	static {
 		
+				
 		String jdbcDriver = "oracle.jdbc.OracleDriver";
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String username = "bookuser";
